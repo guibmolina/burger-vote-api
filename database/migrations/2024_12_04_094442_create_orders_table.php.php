@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('burger_votes', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('votes')->default(0);
-            $table->string('image');
+            $table->string('code')->unique();
+            $table->boolean('voted')->default(false);
             $table->timestamps();
         });
+
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('burger_vote');
+        Schema::dropIfExists('orders');
     }
 };
